@@ -6,25 +6,95 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
-      <% end %>
+  <body
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
+        <div class="container">
+          <strong><a class="navbar-brand p-1 text-white" href="/">Bookers</a></strong>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse " id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+
+              <!--ホームページボタン-->
+              <li class="nav-item">
+                <%= link_to books_path, class:"text-white pr-4" do %>
+                  <strong><i class="fas fa-home"></i><span> Home</span></strong>
+                <% end %>
+              </li>
+
+              <!--ユーザー一覧ボタン-->
+              <li class="nav-item">
+                <%= link_to user_path(current_user.id), class:"text-white pr-4" do %>
+                  <strong><i class="fas fa-users"></i><span> Users</span></strong>
+                <% end %>
+              </li>
+
+              <!--投稿一覧ボタン-->
+              <li class="nav-item">
+                <%= link_to books_path, class:"text-white pr-4" do %>
+                  <strong><i class="fas fa-book-open"></i><span> Books</span></strong>
+                <% end %>
+              </li>
+
+              <!--ログアウトボタン-->
+              <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete, class:"text-white" do %>
+                  <strong><i class="fas fa-sign-out-alt"></i><span> Log out</span></strong>
+                <% end %>
+              </li>
+
+              <% else %>
+              <!--ホームページボタン-->
+              <li class="nav-item">
+                <%= link_to root_path, class:"text-white pr-4" do %>
+                  <strong><i class="fas fa-home"></i><span> Home</span></strong>
+                <% end %>
+              </li>
+
+              <!--アバウトページボタン-->
+              <li class="nav-item">
+                <%= link_to about_path, class:"text-white pr-4" do %>
+                  <strong><i class="fas fa-link"></i><span> About</span></strong>
+                <% end %>
+              </li>
+
+              <!--ユーザー登録ボタン-->
+              <li class="nav-item">
+                <%= link_to new_user_registration_path, class:"text-white pr-4" do %>
+                  <strong><i class="fas fa-user-plus"></i><span> Sign up</span></strong>
+                <% end %>
+              </li>
+
+              <!--ログインボタン-->
+              <li class="nav-item">
+                <%= link_to new_user_session_path, class:"text-white" do %>
+                  <strong><i class="fas fa-sign-in-alt"></i><span> Log in</span></strong>
+                <% end %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
     <%= yield %>
+  
+    <footer>
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

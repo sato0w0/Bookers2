@@ -3,6 +3,7 @@
 <%= form_with model: @user, url: user_registration_path do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
+  <!--名前の入力欄を-->
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
