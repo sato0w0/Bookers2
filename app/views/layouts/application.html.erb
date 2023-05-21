@@ -10,8 +10,8 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body
-    <header class="shadow-sm">
+  <body>
+    <header class="shadow-sm mb-3">
       <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
         <div class="container">
           <strong><a class="navbar-brand p-1 text-white" href="/">Bookers</a></strong>
@@ -25,21 +25,21 @@
 
               <!--ホームページボタン-->
               <li class="nav-item">
-                <%= link_to books_path, class:"text-white pr-4" do %>
+                <%= link_to user_path(current_user.id), class:"text-white pr-4" do %>
                   <strong><i class="fas fa-home"></i><span> Home</span></strong>
                 <% end %>
               </li>
 
               <!--ユーザー一覧ボタン-->
               <li class="nav-item">
-                <%= link_to user_path(current_user.id), class:"text-white pr-4" do %>
+                <%= link_to "/users", class:"text-white pr-4" do %>
                   <strong><i class="fas fa-users"></i><span> Users</span></strong>
                 <% end %>
               </li>
 
               <!--投稿一覧ボタン-->
               <li class="nav-item">
-                <%= link_to books_path, class:"text-white pr-4" do %>
+                <%= link_to "/books", class:"text-white pr-4" do %>
                   <strong><i class="fas fa-book-open"></i><span> Books</span></strong>
                 <% end %>
               </li>
@@ -85,16 +85,18 @@
         </div>
       </nav>
     </header>
-    <%= yield %>
-  
-    <footer>
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="mx-auto">
-            <p>CopyRight Infratop.inc</p>
-          </div>
+  <%= yield %>
+  </body>
+
+  <footer>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="mx-auto">
+
+          <p>CopyRight Infratop.inc</p>
+
         </div>
       </div>
-    </footer>
-  </body>
+    </div>
+  </footer>
 </html>

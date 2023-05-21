@@ -1,9 +1,60 @@
 <div>
-  <%= image_tag 'sample-author1.jpg' %>
-  <p>タイトル：<%= @book.title %></p>
-  <p>説明：<%= @book.body %></p>
-  <p>ユーザーネーム：<%= @book.user.name %></p>
-  <% if @book.user == current_user %>
-    <%= link_to "削除", book_path(@book), method: :delete %>
-  <% end %>
+  <%= flash[:notice] %>
+</div>
+
+<div class="container">
+  <div class= "row">
+
+    <!--左側要素-->
+    <div class= "col-md-3">
+      <h2>User info</h2>
+      <table class='table'>
+        <%= image_tag @book.user.get_profile_image %>
+        <tr>
+          <td><strong>name</strong></td>
+          <td><strong><%= @book.user.name %></strong></td>
+        </tr>
+        <tr>
+          <td><strong>introduction</strong></td>
+          <td><strong><%= @book.user.introduction %></strong></td>
+        </tr>
+      </table>
+      <%= link_to "ここにアイコン載せる", edit_user_path(@user.id), class: "btn btn-outline-secondary btn-block mb-3 mt-5" %>
+
+      <h2>New book</h2>
+      <%= form_with model: @bookn do |f| %>
+        <h6>Title</h6>
+        <%= f.text_field :title %>
+        <h6>Opinion</h6>
+        <%= f.text_area :body %>
+        <%= f.submit 'Create Book',class: "btn btn-success" %>
+      <% end %>
+    </div>
+
+    <!--右側要素-->
+    <div class= "col-md-8 offset-1">
+      <h2>Book detail</h2>
+      <table class='table'>
+        <%= link_to user_path(@user.id) do %>
+          <tr>
+            <td> 
+            <%= link_to user_path(@book.user_id) do %>
+              <%= image_tag @book.user.get_profile_image, size:"80x80" %>
+              <nav>
+                <%= @book.user.name %>
+              </nav>
+            <% end %>
+            </td>
+            <td><%=link_to @book.title %></td>
+            <td><%= @book.body %></td>
+            <% if @book.user_id == current_user.id %>
+              <td><%= link_to "Edit", edit_book_path(@book.id), class:"btn btn-success" %></td>
+              <td><%= link_to "Destroy", book_path(@book.id), class:"btn btn-danger destroy(@book.id)", method: :delete, data: {confirm: "本当に消しますか？"} %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+  </div>
 </div>

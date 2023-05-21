@@ -1,47 +1,55 @@
-<div class="container px-5 px-sm-0 pt-3 pb-5">
+<div>
+  <%= flash[:notice] %>
+</div>
+
+<div class="container">
   <div class= "row">
 
     <!--左側要素-->
     <div class= "col-md-3">
-      <h>User info</h2>
-      <hr>
-      <h5>name</h5>
-      <%= @user.name %>
-      <hr>
-      <h5>introduction</h5>
-      <%= @user.introduction %>
-      <a class="btn btn-secondary btn-lg btn-block" href="edit_user_path(@user.id)" role="button"><i class="fas fa-cog"></i></a>
-      <%= link_to "", edit_user_path(@user.id), class: "btn btn-secondary btn-lg btn-block" %>
+      <h2>User info</h2>
+      <table class='table'>
+        <%= image_tag @user.get_profile_image %>
+        <tr>
+          <td><strong>name</strong></td>
+          <td><strong><%= @user.name %></strong></td>
+        </tr>
+        <tr>
+          <td><strong>introduction</strong></td>
+          <td><strong><%= @user.introduction %></strong></td>
+        </tr>
+      </table>
+      <%= link_to "ここにアイコン載せる", edit_user_path(@user.id), class: "btn btn-outline-secondary btn-block mb-3 mt-5" %>
 
       <h2>New book</h2>
       <%= form_with model: @book do |f| %>
-        <h5>Title</h5>
+        <h6>Title</h6>
         <%= f.text_field :title %>
-        <h5>Opinion</h5>
+        <h6>Opinion</h6>
         <%= f.text_area :body %>
-        <button type="button" class="btn btn-success">Create Book</button>
+        <%= f.submit 'Create Book',class: "btn btn-success" %>
       <% end %>
     </div>
 
     <!--右側要素-->
-    <div class= "col-md-8 offset-md-1">
+    <div class= "col-md-8 offset-1">
       <h2>Books</h2>
-      <table class='table table-hover table-inverse'>
-        <tr>
-          <th></th>
-          <th>Title</th>
-          <th>Opinion</th>
-        </tr>
+      <table class='table'>
+        <th></th>
+        <th>Title</th>
+        <th>Opinion</th>
+
         <% @books.each do |book| %>
-        <%= link_to user_path(@user.id) do %>
-        <tr>
-        <% end %>
-        <td><%= image_tag book.user.get_profile_image, size:"80x80" %></td>
-        <td><%=link_to book.title, book_path(book.id)%></td>
-        <td><%= book.body %></td>
-        </tr>
+          <%= link_to user_path(@user.id) do %>
+          <tr>
+          <% end %>
+          <td><%= image_tag book.user.get_profile_image, size:"80x80" %></td>
+          <td><%=link_to book.title, book_path(book.id)%></td>
+          <td><%= book.body %></td>
+          </tr>
         <% end %>
       </table>
     </div>
+
   </div>
 </div>

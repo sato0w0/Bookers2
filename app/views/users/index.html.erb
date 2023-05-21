@@ -1,2 +1,49 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<div class="container">
+  <div class= "row">
+
+    <!--左側要素-->
+    <div class= "col-md-3">
+      <h2>User info</h2>
+      <table class='table'>
+        <%= image_tag @user.get_profile_image %>
+        <tr>
+          <td><strong>name</strong></td>
+          <td><strong><%= @user.name %></strong></td>
+        </tr>
+        <tr>
+          <td><strong>introduction</strong></td>
+          <td><strong><%= @user.introduction %></strong></td>
+        </tr>
+      </table>
+      <%= link_to "ここにアイコン載せる", edit_user_path(@user.id), class: "btn btn-outline-secondary btn-block mb-3 mt-5" %>
+
+      <h2>New book</h2>
+      <%= form_with model: @book do |f| %>
+        <h6>Title</h6>
+        <%= f.text_field :title %>
+        <h6>Opinion</h6>
+        <%= f.text_area :body %>
+        <%= f.submit 'Create Book',class: "btn btn-success" %>
+      <% end %>
+    </div>
+
+    <!--右側要素-->
+    <div class= "col-md-8 offset-1">
+      <h2>Books</h2>
+      <table class='table'>
+        <th>image</th>
+        <th>name</th>
+        <th></th>
+
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= image_tag user.get_profile_image, size:"80x80" %></td>
+            <td><%= user.name %></td>
+            <td><%= link_to "Show", user_path(user.id) %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+  </div>
+</div>

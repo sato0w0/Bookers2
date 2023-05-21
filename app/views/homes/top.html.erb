@@ -1,2 +1,26 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div>
+  <%= flash[:notice] %>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class='col-6 mx-auto'>
+      <h1>welcome to <strong><i class="fas fa-book"></i>Bookers</strong> !!</h1>
+      <p>In <strong><i class="fas fa-book"></i>Bookers</strong>,</p>
+      <p>you can share and exchange your opinions , inpressions , and emotions</p>
+      <p>about various books!</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class='col-5 mb-3 mx-auto'>
+        <a href="/users/sign_in" class="btn btn-info btn-block" role="button" >Log in</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class='col-5 mx-auto'>
+        <a href="/users/sign_up" class="btn btn-success btn-block" role="button" >Sign up</a>
+    </div>
+  </div>
+</div>
