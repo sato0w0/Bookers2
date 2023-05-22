@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="mx-auto">
+    <div class="col-md-6 mx-auto">
 
       <%= form_with model: @user, url: user_path(current_user.id) do |f| %>
         <h2>User info</h2>
@@ -14,13 +14,22 @@
           </ul>
         <% end %>
 
-        <h6>Name</h6>
-        <%= f.text_field :name %>
-        <h6>Image</h6>
-        <%= f.file_field :profile_image %>
-        <h6>introduction</h6>
-        <%= f.text_area :introduction %>
-        <%= f.submit 'Update User',class: "col-xs-12 btn btn-secondary" %>
+
+        <div class="form-label mb-3">
+          <h6>Name</h6>
+          <%= f.text_field :name, class: "form-control", style: "width:100", rows: "1" %>
+        </div>
+        <div class="form-label mb-3">
+          <h6>Image</h6>
+          <%= f.file_field :profile_image %>
+        </div>
+        <div class="form-label mb-3">
+          <h6>Introduction</h6>
+          <%= f.text_area :introduction, class: "form-control", style: "width:100", rows: "2" %>
+        </div>
+        <div class="button mb-3">
+          <%= f.submit 'Update User',class: "btn btn-secondary" %>
+        </div>
       <% end %>
 
     </div>

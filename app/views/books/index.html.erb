@@ -30,10 +30,14 @@
 
       <h2>New book</h2>
       <%= form_with model: @book do |f| %>
+      <div class="form-label mb-3"> 
         <h6>Title</h6>
-        <%= f.text_field :title %>
+        <%= f.text_field :title, class: "form-control", style: "width:100" %>
+      </div>
+      <div class="form-label mb-3"> 
         <h6>Opinion</h6>
-        <%= f.text_area :body %>
+        <%= f.text_area :body, class: "form-control", style: "width:100" %>
+      </div>
         <%= f.submit 'Create Book',class: "btn btn-success" %>
       <% end %>
     </div>
